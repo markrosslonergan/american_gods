@@ -59,7 +59,11 @@ void polar(){
     func->SetParNames("Norm1","Mean1","sigma1","Norm2","Mean2","Sigma2");
 
 
-    TFitResultPtr res = grP1->Fit("fit");
+    TFitResultPtr r = grP1->Fit("fit","S");
+
+    double chi2   = r->Chi2();                  // to retrieve the fit chi2
+    double par0   = r->Parameter(0);            // retrieve the value for the parameter 0
+    double err0   = r->ParError(0);             // retrieve the error for the parameter 0
 
     // Update, otherwise GetPolargram returns 0
     CPol->Update();
